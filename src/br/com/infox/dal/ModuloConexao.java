@@ -1,6 +1,8 @@
 package br.com.infox.dal;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -10,7 +12,7 @@ public class ModuloConexao {
 
     //metodo responsavel por estabelecer a conexao com o banco
     public static Connection conector() {
-        java.sql.Connection conexao = null;
+        Connection conexao = null;
         //a linha abaixo chama o driver 
         String driver = "org.mariadb.jdbc.Driver";
         // armazenando informações referente ao banco
@@ -22,7 +24,7 @@ public class ModuloConexao {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
             return conexao;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             //System.out.println(e.getMessage());
             return null;
         }
